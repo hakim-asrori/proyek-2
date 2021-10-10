@@ -42,7 +42,7 @@ class AuthController extends Controller
 
 				Auth::login($isUser);
 				Session::put('logged_in', $isUser);
-				return redirect('/home');
+				return redirect('/');
 
             } else { /// jika belum ada, register baru
 
@@ -68,7 +68,7 @@ class AuthController extends Controller
                 /// login
             	Auth::login($createUser);
             	Session::put('logged_in', $createUser);
-            	return redirect('/home');
+            	return redirect('/');
             }
 
         } catch (Exception $exception) {
