@@ -21,6 +21,7 @@ Route::get('/home', function () {
 	return view('welcome');
 });
 
+Route::post('auth/login', [App\Http\Controllers\AuthController::class, 'login']);
 Route::get('auth/logout', [App\Http\Controllers\AuthController::class, 'logout']);
 Route::get('auth/google', [App\Http\Controllers\AuthController::class, 'google']);
 Route::get('auth/google/callback', [App\Http\Controllers\AuthController::class, 'google_callback']);
