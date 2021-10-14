@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+  <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/assets/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
-  <style>
+    <style>
     .content .card {
       max-width: 100%;
     }
@@ -52,6 +52,7 @@
   </footer>
 
   <script src="/assets/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/sweetalert2/dist/sweetalert2.all.min.js"></script>
 </body>
 </html>
 
@@ -67,17 +68,18 @@ if (Session::get('logged_in')) { ?>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="" method="post">
+          <form action="/auth/login" method="post">
+            @csrf
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="text" class="form-control" name="email" id="email">
+              <input type="email" class="form-control" name="email" id="loginEmail">
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" class="form-control" name="password" id="password">
+              <input type="password" class="form-control" name="password" id="loginPassword">
             </div>
             <div class="form-group">
-              <button class="btn btn-primary mt-3 form-control"><i class="fas fa-sign-out-alt fa-fw"></i> Login</button>
+              <button class="btn btn-primary mt-3 form-control" id="login"><i class="fas fa-sign-out-alt fa-fw"></i> Login</button>
             </div>
           </form>
           <hr>
@@ -130,4 +132,18 @@ if (Session::get('logged_in')) { ?>
       </div>
     </div>
   </div>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $("#login").on("click", function () {
+        if ($("#loginEmail").val() == "") {
+          Swal.fire("Ooops", "Harap isi formulir login!", "error")
+        } else {
+          Swal.fire("Ooops", "Harap isi formulir login!", "error")
+        }
+      })
+    })
+    Swal.fire("Hallo", "Yes Terkoneksi", "success");
+  </script>
+
   <?php } ?>

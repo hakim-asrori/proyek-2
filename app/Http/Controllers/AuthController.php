@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Session;
-// use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
 use Hash;
 use Socialite;
@@ -74,6 +73,13 @@ class AuthController extends Controller
         } catch (Exception $exception) {
         	dd($exception->getMessage());
         }
+    }
+
+    public function login(Request $request)
+    {
+    	$email = $request->email;
+
+    	
     }
 
     public function logout()

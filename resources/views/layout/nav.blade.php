@@ -27,7 +27,7 @@
           <a href="/auth/logout" class="btn btn-danger">Logout</a>
         <?php } else { ?>
           <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-          <button class="btn btn-success ms-3" data-bs-toggle="modal" data-bs-target="#registerModal">Daftar</button>
+          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#registerModal">Daftar</button>
         <?php } ?>
       </div>
     </div>
