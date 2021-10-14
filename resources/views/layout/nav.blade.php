@@ -2,8 +2,8 @@
  <div class="myNavbar fixed-top">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <div class="col-lg-1 mt-2"><span class="navbar-brand mb-0 h1">Silihin</span></div>
-      <div class="col-lg-3 ms-lg-5 mt-2 d-none d-md-block">
+      <div class="col-lg-1 my-2"><span class="navbar-brand mb-0 h1">Silihin</span></div>
+      <div class="col-lg-3 ms-lg-5 my-2 d-none d-md-block">
         <form action="">
           <select name="lokasi" id="lokasi" class="form-control">
             <option value="indramayu">Indramayu</option>
@@ -13,13 +13,13 @@
           </select>
         </form>
       </div>
-      <div class="col-lg-5 ms-lg-5 mt-2 d-none d-md-block">
+      <div class="col-lg-5 ms-lg-5 my-2 d-none d-md-block">
         <div class="d-flex justify-content-between">
           <input type="search" class="form-control">
           <button class="btn btn-info text-white">Search</button>
         </div>
       </div>
-      <div class="col-lg-3 ms-lg-5 mt-2">
+      <div class="col-lg-3 ms-lg-5 my-2">
         <?php
         use Illuminate\Support\Facades\Session;
         if (Session::get('logged_in')) { ?>
