@@ -20,15 +20,16 @@
         </div>
       </div>
       <div class="col-lg-3 ms-lg-5 my-2">
-        <?php
-        use Illuminate\Support\Facades\Session;
-        if (Session::get('logged_in')) { ?>
-          <a href="/auth/logout" class="btn btn-warning text-white">Profil</a>
+        <?php if (Session::get('logged_in')) { ?>
+          <a href="/profil" class="btn btn-warning text-white">Profil</a>
           <a href="/auth/logout" class="btn btn-danger">Logout</a>
         <?php } else { ?>
           <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
           <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#registerModal">Daftar</button>
         <?php } ?>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
       </div>
     </div>
   </nav>

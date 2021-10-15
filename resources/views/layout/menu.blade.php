@@ -1,20 +1,31 @@
   <!-- Menu -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link my-2" href="">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link my-2" href="">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link my-2" href="">Pricing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link my-2 disabled">Disabled</a>
-        </li>
-      </ul>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link my-2" href="">Home</a>
+          </li>
+          <?php if (Session::get('logged_in')) { ?>
+            <li class="nav-item">
+              <a class="nav-link my-2" href="">Kendaraan Saya</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link my-2" href="">Whistlist</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link my-2" href="">Komentar</a>
+            </li>
+          <?php } else { ?>
+            <li class="nav-item">
+              <a class="nav-link my-2" href="">Features</a>
+            </li>
+          <?php } ?>
+          <li class="nav-item">
+            <a class="nav-link my-2" href="">Iklan</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
   <!-- Akhir Menu -->

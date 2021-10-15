@@ -1,3 +1,4 @@
+<?php use Illuminate\Support\Facades\Session; ?>
 <!doctype html>
   <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   <html lang="en">
@@ -7,6 +8,8 @@
 
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <style>
     .content .card {
@@ -30,15 +33,25 @@
   </style>
 
   <title>Silihin Aja</title>
+
+  <script src="/assets/js/jquery-3.6.0.slim.min.js"></script>
+  <script src="/assets/sweetalert2/dist/sweetalert2.all.min.js"></script>
 </head>
 <body style="background-color: #E6945D;">
+
+  @if (session('message'))
+  <?= session('message') ?>
+  @endif
 
   @include('layout.nav')
 
   <!-- Konten -->
   <div class="content" style="margin-top: 9vh;">
-
-    @include('layout.menu')
+    <?php if (Session::get('id_role')==1) { ?>
+      @include('layout.menu_admin')
+    <?php } else { ?>
+      @include('layout.menu')
+    <?php } ?>
 
     @yield('content')
     
@@ -52,7 +65,6 @@
   </footer>
 
   <script src="/assets/js/bootstrap.bundle.min.js"></script>
-  <script src="/assets/sweetalert2/dist/sweetalert2.all.min.js"></script>
 </body>
 </html>
 
@@ -68,7 +80,7 @@ if (Session::get('logged_in')) { ?>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="/auth/login" method="post">
+          <form action="/auth/login" method="post" onsubmit="return false" id="formLogin">
             @csrf
             <div class="form-group">
               <label for="email">Email</label>
@@ -101,25 +113,38 @@ if (Session::get('logged_in')) { ?>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="" method="post">
+          @if ($errors->any())
+          <script>
+            Swal.fire("Ooops", "Ada masalah, cek halaman register!", "error");
+          </script>
+          <div class="bg-danger text-white px-3 py-2">
+            <ul>
+              @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif
+          <form action="/auth/register" method="post" onsubmit="return false" id="formRegister">
+            @csrf
             <div class="form-group">
               <label for="nama">Nama</label>
-              <input type="text" class="form-control" name="nama" id="nama">
+              <input type="text" class="form-control" name="nama" id="namaRegister">
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="text" class="form-control" name="email" id="email">
+              <input type="text" class="form-control" name="email" id="emailRegister">
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" class="form-control" name="password" id="password">
+              <input type="password" class="form-control" name="password" id="passwordRegister">
             </div>
             <div class="form-group">
               <label for="password2">Konfirmasi Password</label>
-              <input type="password" class="form-control" id="password2">
+              <input type="password" class="form-control" id="passwordRegister2">
             </div>
             <div class="form-group">
-              <button class="btn btn-primary mt-3 form-control"><i class="fas fa-user-edit fa-fw"></i> Register</button>
+              <button class="btn btn-primary mt-3 form-control" id="register"><i class="fas fa-user-edit fa-fw"></i> Register</button>
             </div>
           </form>
           <hr>
@@ -135,15 +160,33 @@ if (Session::get('logged_in')) { ?>
 
   <script type="text/javascript">
     $(document).ready(function () {
-      $("#login").on("click", function () {
-        if ($("#loginEmail").val() == "") {
-          Swal.fire("Ooops", "Harap isi formulir login!", "error")
+      // $("#registerModal").show();
+      $("#login").click( function () {
+        if ($("#loginEmail").val().trim() == "") {
+          Swal.fire("Ooops", "Harap isi formulir login!", "error");
+        } else if ( $("#loginPassword").val().trim() == "") {
+          Swal.fire("Ooops", "Harap isi formulir login!", "error");
         } else {
-          Swal.fire("Ooops", "Harap isi formulir login!", "error")
+          document.getElementById('formLogin').onsubmit = false;
+        }
+      })
+
+      $("#register").click( function () {
+        if ($("#namaRegister").val().trim() == "") {
+          Swal.fire("Ooops", "Harap isi formulir login!", "error");
+        } else if ( $("#emailRegister").val().trim() == "") {
+          Swal.fire("Ooops", "Harap isi formulir login!", "error");
+        } else if ( $("#passwordRegister").val().trim() == "") {
+          Swal.fire("Ooops", "Harap isi formulir login!", "error");
+        } else if ( $("#passwordRegister2").val().trim() == "") {
+          Swal.fire("Ooops", "Harap isi formulir login!", "error");
+        } else if ( $("#passwordRegister").val().trim() != $("#passwordRegister2").val().trim()) {
+          Swal.fire("Ooops", "Password tidak cocok!", "error");
+        } else {
+          document.getElementById('formRegister').onsubmit = false;
         }
       })
     })
-    Swal.fire("Hallo", "Yes Terkoneksi", "success");
   </script>
 
   <?php } ?>

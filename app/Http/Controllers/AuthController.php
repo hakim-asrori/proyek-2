@@ -56,6 +56,7 @@ class AuthController extends Controller
 
                 /// tambahkan google id
             	$createUser->google_id = $user->getId();
+            	$createUser->id_role = 2;
 
                 /// membuat random password
             	$rand = rand(111111,999999);
@@ -67,6 +68,7 @@ class AuthController extends Controller
                 /// login
             	Auth::login($createUser);
             	Session::put('logged_in', $createUser);
+            	Session::put('id_role', $createUser->id_role);
             	return redirect('/');
             }
 
@@ -77,8 +79,41 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-    	$email = $request->email;
+    	$request->validate([
+    		'email' => 'required',
+    		'password' => 'required|min:6',
+    	]);
 
+    	$user = User::where("email", $request->email)->first();
+
+    	if ($user) {
+    		if (Hash::check($request->password, $user->password)) {
+    			Session::put('logged_in', $user);
+    			Session::put('id_role', $user->id_role);
+    			return redirect('/');
+    		} else {
+    			return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Harap periksa kembali akun anda!', 'error');</script>");
+    		}
+    	} else {
+    		return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Harap periksa kembali akun anda!', 'error');</script>");
+    	}
+    }
+
+    public function register(Request $request)
+    {
+    	$request->validate([
+    		'email' => 'required|unique:users,email',
+    		'password' => 'required|min:6',
+    	]);
+
+    	User::create([
+    		'name' => $request->nama,
+    		'email' => $request->email,
+    		'password' => Hash::make($request->password),
+    	]);
+
+    	return redirect('/')->with('message', "<script>Swal.fire('Selamat!', 'Selamat registrasi berhasil!', 'success');</script>");
+    	
     	
     }
 

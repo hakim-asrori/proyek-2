@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
+
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +17,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-	return view('home');
+	$user = Session::get('logged_in');
+	return view('home', compact("user"));
 });
 
 Route::get('/home', function () {
-	return view('welcome');
+	$user = Session::get('logged_in');
+	return view('home', compact("user"));
 });
 
+// Route Authentication
 Route::post('auth/login', [App\Http\Controllers\AuthController::class, 'login']);
+Route::post('auth/register', [App\Http\Controllers\AuthController::class, 'register']);
 Route::get('auth/logout', [App\Http\Controllers\AuthController::class, 'logout']);
 Route::get('auth/google', [App\Http\Controllers\AuthController::class, 'google']);
 Route::get('auth/google/callback', [App\Http\Controllers\AuthController::class, 'google_callback']);
+
+// Route Profile
+Route::get('profil', [App\Http\Controllers\ProfilController::class, 'index'])->middleware("otentikasi");
