@@ -8,7 +8,7 @@
           </li>
           <?php if (Session::get('logged_in')) { ?>
             <li class="nav-item">
-              <a class="nav-link my-2" href="">Kendaraan Saya</a>
+              <a class="nav-link my-2" href="/kendaraan">Kendaraan Saya</a>
             </li>
             <li class="nav-item">
               <a class="nav-link my-2" href="">Whistlist</a>

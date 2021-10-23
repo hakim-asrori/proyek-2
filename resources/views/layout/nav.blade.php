@@ -2,7 +2,7 @@
  <div class="myNavbar fixed-top">
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <div class="col-lg-1 my-2"><span class="navbar-brand mb-0 h1">Silihin</span></div>
+      <div class="col-lg-1 my-2"><a href="/" class="navbar-brand mb-0 h1">Silihin</a></div>
       <div class="col-lg-3 ms-lg-5 my-2 d-none d-md-block">
         <form action="">
           <select name="lokasi" id="lokasi" class="form-control">
