@@ -35,3 +35,6 @@ Route::get('auth/google/callback', [App\Http\Controllers\AuthController::class, 
 
 // Route Profile
 Route::get('profil', [App\Http\Controllers\ProfilController::class, 'index'])->middleware("otentikasi");
+
+// Route Barang
+Route::resource('kendaraan', App\Http\Controllers\BarangController::class)->middleware("otentikasi");

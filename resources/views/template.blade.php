@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
     <link href="/assets/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -42,7 +43,7 @@
   @if (session('message'))
   <?= session('message') ?>
   @endif
-
+  
   @include('layout.nav')
 
   <!-- Konten -->
@@ -68,6 +69,7 @@
 </body>
 </html>
 
+<script src="/assets/js/script.js"></script>
 <?php
 if (Session::get('logged_in')) { ?>
 
@@ -160,7 +162,6 @@ if (Session::get('logged_in')) { ?>
 
   <script type="text/javascript">
     $(document).ready(function () {
-      // $("#registerModal").show();
       $("#login").click( function () {
         if ($("#loginEmail").val().trim() == "") {
           Swal.fire("Ooops", "Harap isi formulir login!", "error");

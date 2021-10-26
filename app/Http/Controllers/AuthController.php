@@ -41,7 +41,7 @@ class AuthController extends Controller
 
 				Auth::login($isUser);
 				Session::put('logged_in', $isUser);
-				return redirect('/');
+				return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Selamat anda berhasil login', 'success')</script>");
 
             } else { /// jika belum ada, register baru
 
@@ -69,7 +69,7 @@ class AuthController extends Controller
             	Auth::login($createUser);
             	Session::put('logged_in', $createUser);
             	Session::put('id_role', $createUser->id_role);
-            	return redirect('/');
+            	return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Selamat anda berhasil login', 'success')</script>");
             }
 
         } catch (Exception $exception) {
@@ -90,7 +90,7 @@ class AuthController extends Controller
     		if (Hash::check($request->password, $user->password)) {
     			Session::put('logged_in', $user);
     			Session::put('id_role', $user->id_role);
-    			return redirect('/');
+    			return redirect('/')->with('message', "<script>Swal.fire('Wooww', 'Selamat anda berhasil login', 'success')</script>");
     		} else {
     			return redirect('/')->with('message', "<script>Swal.fire('Ooops', 'Harap periksa kembali akun anda!', 'error');</script>");
     		}
@@ -112,7 +112,7 @@ class AuthController extends Controller
     		'password' => Hash::make($request->password),
     	]);
 
-    	return redirect('/')->with('message', "<script>Swal.fire('Selamat!', 'Selamat registrasi berhasil!', 'success');</script>");
+    	return redirect('/')->with('message', "<script>Swal.fire('Wooww!', 'Selamat registrasi berhasil', 'success');</script>");
     	
     	
     }
@@ -120,6 +120,6 @@ class AuthController extends Controller
     public function logout()
     {
     	Session::flush();
-    	return redirect('/');
+    	return redirect('/')->with('message', "<script>Swal.fire('Wooww!', 'Selamat anda berhasil logout', 'success');</script>");
     }
 }
