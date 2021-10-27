@@ -4,14 +4,14 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link my-2" href="">Home</a>
+            <a class="nav-link my-2" href="/">Home</a>
           </li>
           <?php if (Session::get('logged_in')) { ?>
             <li class="nav-item">
               <a class="nav-link my-2" href="/kendaraan">Kendaraan Saya</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link my-2" href="">Whistlist</a>
+              <a class="nav-link my-2" href="/whistlist">Whistlist</a>
             </li>
             <li class="nav-item">
               <a class="nav-link my-2" href="">Komentar</a>

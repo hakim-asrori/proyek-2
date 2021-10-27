@@ -38,3 +38,6 @@ Route::get('profil', [App\Http\Controllers\ProfilController::class, 'index'])->m
 
 // Route Barang
 Route::resource('kendaraan', App\Http\Controllers\BarangController::class)->middleware("otentikasi");
+
+// Route Whistlist
+Route::resource('whistlist', App\Http\Controllers\WhistlistController::class)->middleware("otentikasi");

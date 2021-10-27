@@ -6,10 +6,10 @@
 			<a href="" class="text-decoration-none text-dark">
 				<div class="card shadow-sm">
 					<div class="_card-body">
-						<img src="" alt="">
+						<img src="/assets/images/xenia.png" alt="">
 						<div class="_card-text">
-							<p class="font-weight-bold ml-3 mt-2 h5 text-primary">Asep</p>
-							<p class="ml-3 my-0">Rp. 200.000,- / Hari</p>
+							<p class="font-weight-bold ml-3 mt-2 h5 text-primary">Mobil Xenia</p>
+							<p class="ml-3 my-0">Rp. 800.000,- / Hari</p>
 							<span class="badge btn-success">Tersedia</span>
 							<span class="d-flex justify-content-end small">20 Oktober 2021</span>
 						</div>
