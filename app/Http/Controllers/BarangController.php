@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Barang;
 
 class BarangController extends Controller
 {
@@ -13,7 +14,9 @@ class BarangController extends Controller
      */
     public function index()
     {
-        return view('barang.index');
+        $barang = Barang::all();
+
+        return view('barang.index', compact('barang'));
     }
 
     /**
@@ -34,7 +37,20 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $nama = $request->nama;
+        $harga = $request->harga;
+        $no_plat =$request->no_plat;
+        $keterangan=$request->keterangan;
+        
+        Barang::create([
+            'id_user'     =>1,
+            'nama_barang' => $nama,
+            'no_plat'     => $no_plat,
+            'harga'       => $harga,
+            'keterangan'  => $keterangan
+
+        ]);
+            return redirect('/kendaraan')->with("message",'<script>Swal.fire("Wooowww", "Data berhasil ditambahkan!","success")</script>');
     }
 
     /**
